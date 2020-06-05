@@ -115,11 +115,15 @@ namespace RentACar
             try
             {
                 // ładowanie słownika marek (brendów)
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                
                 String sql = " select id, name FROM car_brands ORDER BY name  ";
-                adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
+
+                //MySqlDataAdapter adapter = new MySqlDataAdapter();
+                //adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
+                //DataTable dt = new DataTable();
+                //adapter.Fill(dt);
+
+                DataTable dt = GlobalData.DataTableFiller(sql, "");
 
                 bsBrands.DataSource = dt;
                 cb_Brands.DataSource = bsBrands;
@@ -130,10 +134,12 @@ namespace RentACar
 
                 //ładowanie słownika modeli
                 sql = "SELECT * FROM car_models ORDER BY NAME ";
-                adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
-                dt = new DataTable();
-                adapter.Fill(dt);
+                //adapter = new MySqlDataAdapter();
+                //adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
+                //dt = new DataTable();
+                //adapter.Fill(dt);
+
+                dt = GlobalData.DataTableFiller(sql, "");
 
                 bsModels.DataSource = dt;
                 cb_Models.DataSource = bsModels;
@@ -143,11 +149,14 @@ namespace RentACar
                 cb_Models.Enabled = false;
 
                 //ładowanie słownika własnosci
-                sql = "SELECT * FROM car_types ORDER BY NAME ";
-                adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
-                dt = new DataTable();
-                adapter.Fill(dt);
+
+                //sql = "SELECT * FROM car_types ORDER BY NAME ";
+                //adapter = new MySqlDataAdapter();
+                //adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
+                //dt = new DataTable();
+                //adapter.Fill(dt);
+
+                dt = GlobalData.DataTableFiller(sql, "");
 
                 bsTypes.DataSource = dt;
                 cb_Types.DataSource = bsTypes;

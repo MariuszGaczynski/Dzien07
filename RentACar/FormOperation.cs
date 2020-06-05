@@ -39,12 +39,14 @@ namespace RentACar
                 Text = "Zwrot pojazdu " + RegPlate;
                 string sql = "SELECT id, description FROM operations WHERE car_id= {0} ORDER BY id DESC LIMIT 0,1";
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                sql = string.Format(sql, CarId);
-                adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
+                //MySqlDataAdapter adapter = new MySqlDataAdapter();
+                //sql = string.Format(sql, CarId);
+                //adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
 
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                //DataTable dt = new DataTable();
+                //adapter.Fill(dt);
+
+                DataTable dt = GlobalData.DataTableFiller(sql, CarId.ToString());
 
                 if (dt.Rows.Count>0)
                 {

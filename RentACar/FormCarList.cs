@@ -23,7 +23,7 @@ namespace RentACar
 
         private void FormCarList_Load(object sender, EventArgs e)
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            
             string sql = @"SELECT 
                             c.id,b.name AS brand, m.name AS model,t.name AS car_type, 
                             c.registration_plate, c.engine,c.manufacturer_year,
@@ -35,10 +35,14 @@ namespace RentACar
                             AND c.type_id = t.id
                             AND m.brand_id = b.id";
 
-            adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
 
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
+            //MySqlDataAdapter adapter = new MySqlDataAdapter();
+            //adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
+
+            //DataTable dt = new DataTable();
+            //adapter.Fill(dt);
+
+            DataTable dt = GlobalData.DataTableFiller(sql, "");
 
             bSource.DataSource = dt;
             Grid.DataSource = bSource;
@@ -96,7 +100,7 @@ namespace RentACar
 
         private void RefreshData()   // oświeża dane w gridzie
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            
             string sql = @"SELECT 
                  c.id, b.name AS brand, m.name AS model, t.name AS car_type, 
                  c.registration_plate, c.engine, c.manufacturer_year,
@@ -106,10 +110,14 @@ namespace RentACar
                 WHERE
                  c.model_id = m.id AND c.type_id = t.id AND m.brand_id = b.id";
 
-            adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
 
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
+            //MySqlDataAdapter adapter = new MySqlDataAdapter();
+            //adapter.SelectCommand = new MySqlCommand(sql, GlobalData.connection);
+
+            //DataTable dt = new DataTable();
+            //adapter.Fill(dt);
+
+            DataTable dt = GlobalData.DataTableFiller(sql, "");
 
             bSource.DataSource = dt;
             Grid.DataSource = bSource;
